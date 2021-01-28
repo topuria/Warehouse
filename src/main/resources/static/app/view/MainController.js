@@ -18,16 +18,5 @@ Ext.define('SL.view.MainController', {
 		}
 
 		tabPanel.setActiveTab(tab);
-	},
-
-	// afterRender: function () {
-	// 	const products = this.getViewModel().getStore('products');
-	// 	const suppliers = this.getViewModel().getStore('suppliers');
-	//
-	// 	suppliers.load({
-	// 		callback: function () {
-	// 			products.load();
-	// 		}
-	// 	});
-	// }
+	}
 });

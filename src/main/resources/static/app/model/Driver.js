@@ -1,6 +1,6 @@
 Ext.define('SL.model.Driver', {
 	extend: 'Ext.data.Model',
-	fields: ['id','fullName', 'personalNumber',{
+	fields: ['driversId','fullName', 'personalNumber',{
 		name: 'car.model',
 		type: 'string',
 		mapping : 'car.model'

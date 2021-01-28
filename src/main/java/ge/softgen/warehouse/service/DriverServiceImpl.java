@@ -23,7 +23,7 @@ public class DriverServiceImpl implements DriverService {
 	@Override
 	public void addDriver(Driver driver) throws Exception {
 		if(driver!=null){
-			driver.setId(null);
+			driver.setDriversId(null);
 			driverRepository.save(driver);
 			System.out.println("driver added");
 		}else {

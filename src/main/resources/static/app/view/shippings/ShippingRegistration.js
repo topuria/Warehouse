@@ -9,17 +9,13 @@ Ext.define('SL.view.shippings.ShippingRegistration', {
 		registrationShipping: function () {
 			const form = this.lookup('shippingForm');
 			const values = form.getForm().getValues();
-			if (form.getForm().isValid()) {
-				Ext.Ajax.request({
-					url: '/shipping',
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					params : values,
-					success: function(data) {
-						Ext.Msg.alert('გილოცავ', 'წ');
-					}
-				});
-			}
+			let record = Ext.create('SL.model.Shipping', values);
+			record.save({
+				success: function (data) {
+					Ext.Msg.alert('შეტყობინება', 'პროდუქტი წარმატებით დარეგისტრირდა');
+					form.reset();
+				}
+			});
 		}
 	},
 	items: [{
@@ -32,29 +28,29 @@ Ext.define('SL.view.shippings.ShippingRegistration', {
 		},
 		items: [{
 			xtype: 'combo',
-			name: 'id',
+			name: 'driverId', // javashi romel obieqtsac velodebit imis velebs unda emtxveodes name ebi
 			fieldLabel: 'მძღოლი',
 			queryMode: 'remote',
 			editable: false,
 			bind: {
 				store: '{drivers}'
 			},
-			valueField: 'id',
+			valueField: 'driversId',
 			displayField: 'fullName',
 		},{
 			xtype: 'combo',
-			name: 'id',
+			name: 'carId',
 			fieldLabel: 'მანქანა',
 			queryMode: 'remote',
 			editable: false,
 			bind: {
 				store: '{cars}'
 			},
-			valueField: 'id',
+			valueField: 'carId',
 			displayField: 'model',
 		},{
 			xtype: 'combo',
-			name: 'id',
+			name: 'warehouseStartPlaceId',
 			fieldLabel: 'საიდან',
 			queryMode: 'remote',
 			editable: false,
@@ -65,7 +61,7 @@ Ext.define('SL.view.shippings.ShippingRegistration', {
 			displayField: 'name',
 		},{
 			xtype: 'combo',
-			name: 'id',
+			name: 'warehouseEndPlaceId',
 			fieldLabel: 'სად',
 			queryMode: 'remote',
 			editable: false,
@@ -76,7 +72,7 @@ Ext.define('SL.view.shippings.ShippingRegistration', {
 			displayField: 'name',
 		},{
 			xtype: 'combo',
-			name: 'id',
+			name: 'productId',
 			fieldLabel: 'პროდუქტი',
 			queryMode: 'remote',
 			editable: false,

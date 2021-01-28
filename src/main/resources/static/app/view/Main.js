@@ -10,7 +10,7 @@ Ext.define('SL.view.Main', {
   items: [{
     xtype: 'panel',
     reference: 'header',
-    height: 50,
+    height: 70,
     bodyPadding: 10,
     region: 'north',
     layout: {
@@ -20,7 +20,7 @@ Ext.define('SL.view.Main', {
     items: [{
       xtype: 'label',
       flex: 1,
-      html: '<strong>საწყობი</strong>'
+      html: '<h1><strong>საწყობი</strong></h1>'
     }]
   }, {
     xtype: 'panel',

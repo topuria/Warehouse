@@ -1,6 +1,6 @@
 Ext.define('SL.view.MainViewModel', {
 	extend: 'Ext.app.ViewModel',
-	requires: ['SL.model.Product', 'SL.model.Supplier', 'SL.model.Warehouse','SL.model.Car','SL.model.Driver'],
+	requires: ['SL.model.Product', 'SL.model.Supplier', 'SL.model.Warehouse','SL.model.Car','SL.model.Driver','SL.model.Shipping'],
 
 	stores: {
 		products: {
@@ -24,6 +24,10 @@ Ext.define('SL.view.MainViewModel', {
 		drivers:{
 			model:'SL.model.Driver',
 			autoLoad:true
+		},
+		shipping: {
+			model: 'SL.model.Shipping',
+			autoLoad: true
 		},
 
 		navItems: {

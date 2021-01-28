@@ -45,7 +45,7 @@ Ext.define('SL.view.drivers.DriversGrid', {
 		}],
 		columns: [{
 			text: 'id',
-			dataIndex: 'id',
+			dataIndex: 'driversId',
 			flex: 1
 		}, {
 			text: 'სახელი',

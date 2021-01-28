@@ -1,6 +1,6 @@
 Ext.define('SL.model.Car', {
 	extend: 'Ext.data.Model',
-	fields: ['id','model', 'serialNum', 'createDate'],
+	fields: ['carId','model', 'serialNum', 'createDate'],
 	validators: {
 		id: 'present'
 	},

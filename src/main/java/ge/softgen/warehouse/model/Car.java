@@ -16,7 +16,8 @@ import java.time.LocalDate;
 public class Car {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "id")
+	private Long carId;
 	@Column(name = "model")
 	private String model;
 	@Column(name = "serial_number")

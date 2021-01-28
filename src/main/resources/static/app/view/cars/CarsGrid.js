@@ -36,7 +36,7 @@ Ext.define('SL.view.cars.CarsGrid', {
 		}],
 		columns: [{
 			text: 'id',
-			dataIndex: 'id',
+			dataIndex: 'carId',
 			flex: 1
 		}, {
 			text: 'მოდელი',

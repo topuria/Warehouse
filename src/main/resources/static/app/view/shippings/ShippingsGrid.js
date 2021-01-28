@@ -1,13 +1,5 @@
 Ext.define('SL.view.shippings.ShippingsGrid', {
 	extend: 'Ext.panel.Panel',
-	viewModel:{
-		stores: {
-			shippingss: {
-				model: 'SL.model.Shipping',
-				autoLoad: true
-			},
-		}
-	},
 	controller:{
 		// deleteSupplier: function (btn){
 		// 	let me = this;
@@ -26,7 +18,7 @@ Ext.define('SL.view.shippings.ShippingsGrid', {
 	},
 	items: [{
 		xtype: 'grid',
-		bind: '{shippingss}',
+		bind: '{shipping}',
 		reference: 'shippingsGrid',
 		plugins: {
 			ptype: 'rowediting',

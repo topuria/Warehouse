@@ -24,7 +24,7 @@ public class CarServiceImpl implements CarService{
 	@Override
 	public void addCar(Car car) throws Exception {
 		if(car!=null){
-			car.setId(null);
+			car.setCarId(null);
 			carRepository.save(car);
 			System.out.println("car added");
 		}else{
