@@ -1,4 +1,4 @@
-package ge.softgen.warehouse.model;
+package ge.softgen.warehouse.model.helpers;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

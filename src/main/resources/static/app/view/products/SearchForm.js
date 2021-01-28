@@ -47,10 +47,13 @@ Ext.define('SL.view.products.SearchForm', {
 		fieldLabel: 'საცალო ფასი'
 	}],
 	buttons: [{
-		text: 'Search',
+		text: 'ძებნა',
 		handler: 'search'
 	}, {
-		text: 'reset',
+		text: 'განულება',
 		handler: 'resetForm'
+	},{
+		text: 'რეგისტრაცია',
+
 	}]
 });

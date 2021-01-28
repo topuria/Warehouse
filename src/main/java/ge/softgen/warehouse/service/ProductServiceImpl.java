@@ -1,12 +1,13 @@
 package ge.softgen.warehouse.service;
 
 import ge.softgen.warehouse.model.*;
+import ge.softgen.warehouse.model.helpers.ProductHelper;
 import ge.softgen.warehouse.repository.ProductRepository;
 import ge.softgen.warehouse.repository.SupplierRepository;
 import ge.softgen.warehouse.repository.WareHouseRepository;
 import javassist.NotFoundException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.Predicate;
@@ -62,14 +63,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Page<Product> search(String model,double amountForAll,String supplier,String warehouse) {
-		Sort sort = Sort.by(Sort.Direction.DESC,"id");
+	public Page<Product> search(String model, Double amountForAll, String supplier, String warehouse, Pageable pageable) {
 		return productRepository.findAll((root, query, cb) -> {
 			Predicate predicate = cb.conjunction();
 			if (isNotEmpty(model)) {
 				predicate = cb.and(predicate, cb.like(root.get(Product.Fields.model), model + "%"));
 			}
-			if ( amountForAll!= 0) {
+			if ( amountForAll!= null) {
 				predicate = cb.and(predicate, cb.greaterThanOrEqualTo(root.get(Product.Fields.priceForAll), amountForAll));
 			}
 			if (supplier != null) {
@@ -79,6 +79,6 @@ public class ProductServiceImpl implements ProductService {
 				predicate = cb.and(predicate, cb.like(root.get(Product.Fields.wareHouse), warehouse));
 			}
 			return predicate;
-		}, SearchRequest.toPageRequest(sort));
+		},pageable);
 	}
 }

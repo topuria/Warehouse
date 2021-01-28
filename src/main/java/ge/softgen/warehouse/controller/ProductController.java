@@ -1,22 +1,24 @@
 package ge.softgen.warehouse.controller;
 
-import ge.softgen.warehouse.model.ProductHelper;
+import ge.softgen.warehouse.model.helpers.ProductHelper;
 import ge.softgen.warehouse.model.Product;
 import ge.softgen.warehouse.service.ProductService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/product")
-public class MainController {
+public class ProductController {
 	private final ProductService productService;
 
 	@Autowired
-	public MainController(ProductService productService) {
+	public ProductController(ProductService productService) {
 		this.productService = productService;
 
 	}
@@ -28,10 +30,12 @@ public class MainController {
 
 	@GetMapping("/search")
 	public Page<Product> search(@RequestParam(required = false) String model,
-								@RequestParam(required = false)double amountForAll,
+								@RequestParam(required = false)Double amountForAll,
 								@RequestParam(required = false)String supplier,
-								@RequestParam(required = false)String warehouse) {
-		return productService.search(model,amountForAll,supplier,warehouse);
+								@RequestParam(required = false)String warehouse,
+								@RequestParam(value = "limit", required = false, defaultValue = "25") int size,
+								@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		return productService.search(model, amountForAll, supplier, warehouse, PageRequest.of(page - 1, size, Sort.Direction.DESC, "id"));
 	}
 
 	@PostMapping()

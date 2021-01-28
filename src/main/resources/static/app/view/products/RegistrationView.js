@@ -1,39 +1,33 @@
-Ext.define('SL.view.RegistrationView', {
-	extend: 'Ext.panel.Panel',
+Ext.define('SL.view.products.RegistrationView', {
+	extend: 'Ext.window.Window',
+	title: 'რეგისტრაცია',
+	modal: true,
+	layout: 'fit',
+	width: 300,
+	height: 300,
 	controller: {
-		registration1: function () {
+		registration: function () {
 			const form = this.lookup('form');
 			const values = form.getForm().getValues();
-			if (form.getForm().isValid()) {
-				Ext.Ajax.request({
-					url: '/product',
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					params : Ext.JSON.encode(values),
-					success: function(conn, response, options, eOpts) {
-						Ext.Msg.alert('გილოცავ', 'წარმატებით დარეგისტრირდა პროდუქტი');
-					}
-				});
-			}
+			let record = Ext.create('SL.model.Product', values);
+			record.save({
+				success: function (data) {
+					Ext.Msg.alert('შეტყობინება', 'პროდუქტი წარმატებით დარეგისტრირდა');
+					form.reset();
+				}
+			});
 		}
 	},
 	items: [{
 		xtype: 'form',
 		border: false,
 		reference: 'form',
-		bodyPadding: 5,
-		layout: 'vbox',
+		type: 'vbox',
 		defaults: {
-			margin: 5,
-			flex: 1,
 			defaultType: 'textfield',
 		},
-		defaultType: 'fieldset',
 		fieldDefaults: {
-			labelAlign: 'top',
-			msgTarget: 'side',
-			labelWidth: 150,
-			anchor: '100%'
+			anchor: '100%',
 		},
 		items: [{
 			xtype: 'combo',
@@ -45,7 +39,7 @@ Ext.define('SL.view.RegistrationView', {
 				store: '{suppliers}'
 			},
 			valueField: 'supplierId',
-			displayField: 'name'
+			displayField: 'name',
 		}, {
 			xtype: 'combo',
 			name: 'wareHouseId',
@@ -56,23 +50,23 @@ Ext.define('SL.view.RegistrationView', {
 				store: '{warehouses}'
 			},
 			valueField: 'wareHouseId',
-			displayField: 'name'
+			displayField: 'name',
 		}, {
 			xtype: "textfield",
 			fieldLabel: "მოდელი",
-			name: "model"
+			name: "model",
 		}, {
 			xtype: "numberfield",
 			fieldLabel: "რაოდენობა",
-			name: "capacity"
+			name: "capacity",
 		}, {
 			xtype: "numberfield",
 			fieldLabel: "ფასი",
-			name: "priceForAll"
+			name: "priceForAll",
 		}],
 		buttons: [{
 			text: 'რეგისტრაცია',
-			handler: 'registration1',
+			handler: 'registration',
 		}]
 	}]
 });

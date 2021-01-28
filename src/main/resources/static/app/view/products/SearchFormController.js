@@ -4,10 +4,22 @@ Ext.define('SL.view.products.SearchFormController', {
 	search: function () {
 		const form = this.getView();
 		const values = form.getForm().getValues();
-		//const store = this.getViewModel().getStore('products');
-		this.getViewModel().getStore('products').load({
-			params:values
-		})
+		let store = this.getViewModel().getStore('products');
+		 if (form.getForm().isValid()) {
+		 	Ext.Ajax.request({
+				url: '/product/search',
+				method: 'GET',
+				headers: { 'Content-Type': 'application/json' },
+				params : values,
+				success: function(data) {
+					console.log(data);
+					store.load({
+						params:data
+					})
+					Ext.Msg.alert('გილოცავ', 'წარმატებით მოიძებნა მარა არ ლოადდება');
+				}
+			});
+		}
 	},
 
 	resetForm: function () {
