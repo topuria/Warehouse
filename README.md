@@ -1,2 +1,9 @@
 # Warehouse
-Warehouse App with Spring boot 2,ExtJs 6 and Postgre
+Warehouse App
+Used Stack:
+1.Spring boot 2
+2.ExtJs 6
+3.Postgre Database,PostgreSQL
+4.Hibernate
+
+
